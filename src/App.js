@@ -1,25 +1,63 @@
-import logo from './logo.svg';
+import Navigation from './Components/Navigation/Navigation';
+import SignIn from './Components/SignIn/SignIn';
+import Register from './Components/Register/Register';
+import Logo from './Components/Logo/Logo';
+import Data from './Components/Data/Data';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      route: "signIn",
+      isSignIn: false,
+      user:{
+        email: '',
+        password: '',
+        name: '',
+        join: ''
+      }
+    }
+  }
+
+  loadUser = (data) =>{
+    this.setState({user:{
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      join: data.join
+    }})
+  }
+  onRouteChange = (route) =>{
+    if(route==="signOut"){
+      this.setState({isSignIn: false});
+    }
+    else if (route==="home"){
+      this.setState({isSignIn: true});
+    }
+    this.setState({route: route});
+  }
+  render (){
+    return(
+      <div className="App">
+        <Navigation isSignIn={this.state.isSignIn} onRouteChange={this.onRouteChange}/>
+        {
+          this.state.route === "home"  
+            ?<div>
+              <Logo/>
+              <Data/>
+            </div>
+            :(
+              this.state.route==="signIn" ?
+                <SignIn onRouteChange={this.onRouteChange}/>
+              :
+                <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>)
+          
+        }
+      </div>
+    )
+  };
 }
 
 export default App;
