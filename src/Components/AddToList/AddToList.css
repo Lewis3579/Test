@@ -1,0 +1,9 @@
+.mylist{
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+    padding: 0.5rem;
+    background-color: rgb(211, 177, 145);
+    font-size: 1rem;
+    font-weight: bold;
+}

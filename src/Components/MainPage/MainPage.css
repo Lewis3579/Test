@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    background-color: rgb(226, 226, 234);
+}
+.header{
+    width: 100%;
+    height: 80px;
+    color: rgb(226, 226, 234);
+    background-color: rgb(24, 23, 23);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    z-index: 12;
+}
+.header .search-box input{
+    outline: none;
+    border: none;
+    width: 350px;
+    height: 30px;
+    font-size: 1.2rem;
+    padding: 0 1rem;
+}
+.container{
+    width: 100%;
+    margin: 100px auto;
+    display: flex;
+}
+.mangaInfo{
+    width: 320px;
+    height: 100%;
+    background-color: rgb(226, 226, 234);
+    position: relative;
+    z-index: 11;
+}
+.mangaRow{
+    display: flex;
+    flex-direction: column;
+}
+.mangaRow .text-heading{
+    margin-left: 20rem;
+    margin-top: 1rem;
+}
+.mangaRow .row{
+    display: inline-flex;
+    gap: 20px;
+    margin-left: 20rem;
+}

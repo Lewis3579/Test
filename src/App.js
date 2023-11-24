@@ -2,7 +2,7 @@ import Navigation from './Components/Navigation/Navigation';
 import SignIn from './Components/SignIn/SignIn';
 import Register from './Components/Register/Register';
 import Logo from './Components/Logo/Logo';
-import Data from './Components/Data/Data';
+import MainPage from './Components/MainPage/MainPage';
 import './App.css';
 import React from 'react';
 
@@ -45,8 +45,9 @@ class App extends React.Component {
         {
           this.state.route === "home"  
             ?<div>
+              
+              <MainPage/>
               <Logo/>
-              <Data/>
             </div>
             :(
               this.state.route==="signIn" ?
