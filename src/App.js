@@ -2,9 +2,11 @@ import Navigation from './Components/Navigation/Navigation';
 import SignIn from './Components/SignIn/SignIn';
 import Register from './Components/Register/Register';
 import Logo from './Components/Logo/Logo';
-import MainPage from './Components/MainPage/MainPage';
+import FrontPage from './Components/Manga/FrontPage/FrontPage';
 import './App.css';
 import React from 'react';
+
+
 
 class App extends React.Component {
   constructor(){
@@ -45,9 +47,8 @@ class App extends React.Component {
         {
           this.state.route === "home"  
             ?<div>
-              
-              <MainPage/>
               <Logo/>
+              <FrontPage/>
             </div>
             :(
               this.state.route==="signIn" ?
