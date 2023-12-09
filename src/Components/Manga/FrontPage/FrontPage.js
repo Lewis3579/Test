@@ -28,7 +28,6 @@ class FrontPage extends React.Component{
             return(
                 <>
                     <div className="tc">
-                        <h1>Mangas</h1>
                         <Scroll>
                             <MangaList mangas = {info}/>
                         </Scroll>

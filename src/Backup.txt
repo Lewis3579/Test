@@ -1,0 +1,1 @@
+'image.image_id','image.pic','chapters.chapter_id','chapters.chapter'

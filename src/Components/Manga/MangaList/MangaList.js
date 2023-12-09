@@ -4,7 +4,7 @@ import MangaTitle from "../MangaTitle/MangaTitle";
 const MangaList = ({mangas})=>{
         const MangaComponent = mangas.map((manga,i) =>{
             return (
-                <MangaTitle key ={i} id={mangas[i].manga_id} title = {mangas[i].title} cover={mangas[i].cover}/>
+                <MangaTitle key ={i} manga_id={mangas[i].manga_id} title = {mangas[i].title} cover={mangas[i].cover}/>
             )
         })
         
