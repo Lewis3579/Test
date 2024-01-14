@@ -5,24 +5,38 @@ import Logo from './Components/Logo/Logo';
 import Root from './Components/Root/Root';
 import FrontPage from './Components/Manga/FrontPage/FrontPage';
 import Content from './Components/Manga/Content/Content';
-import Image from './Components/Manga/Image/Image';
+import Image, { mangaLoader } from './Components/Manga/Image/Image';
+import Favourite from './Components/Manga/Favourite/Favourite';
+import UploadManga from './Components/Upload/Manga/UploadManga';
+import UploadChapter from './Components/Upload/Chapter/UploadChapter';
+import UploadImage from './Components/Upload/Image/UploadImage';
 import './App.css';
 
 import React from 'react';
+//import AuthProvider from 'react-auth-kit/AuthProvider';
 import {createBrowserRouter, createRoutesFromElements, RouterProvider, Route} from 'react-router-dom';
 
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Root/>}>
-      <Route path='frontpage' element={<FrontPage/>}/>
-      <Route path="content" element={<Content />}>
-        <Route path='image' element={<Image/>} />
+    //<AuthProvider authType={'cookie'} authName={'_auth'} cookieDomain={window.location.hostname} cookieSecure={false}>
+      <Route path='/' element={<Root/>}>
+        <Route path='frontpage' element={<FrontPage/>}/>
+        <Route path='favourite' element={<Favourite/>}/>
+        <Route path='uploadmanga' element={<UploadManga/>}/>
+        <Route path="content" element={<Content />}>
+          <Route path='uploadchapter' element={<UploadChapter/>}/>
+          <Route path=':id' element={<Image/>} loader={mangaLoader}>
+          <Route path='uploadimage' element={<UploadImage/>}/>
+          </Route>
+        </Route>
       </Route>
-    </Route>
+    //</AuthProvider>
+    
   )
 )
+
 class App extends React.Component {
   constructor(){
     super();
@@ -65,7 +79,6 @@ class App extends React.Component {
             this.state.route === "home"  
               ?<div>
                 <Logo/>
-                
                 <RouterProvider router={router}/>  
               </div>
               :(

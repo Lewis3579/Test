@@ -1,6 +1,6 @@
 import React from "react";
 import 'tachyons';
-import { Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import Chapter from "../Chapter/Chapter";
 class Content extends React.Component{
     constructor(){
@@ -17,6 +17,14 @@ class Content extends React.Component{
             this.setState({current:data})
         })
     }
+    deleteManga = () =>{
+        fetch('http://localhost:3000/deletemanga')
+        .then(response => response.json())
+        .then(data =>{
+            console.log(data)
+        })
+        alert('Manga deleted!');
+    }
     render(){
         const currents = this.state.current
         const chaptercomponent = currents.map((current,i) =>{
@@ -28,7 +36,11 @@ class Content extends React.Component{
         })
         return(
             <div>
-                {chaptercomponent}
+                <div className="" style={{overflowY: 'scroll',border:'1px solid black', width:'500px'}}>
+                    {chaptercomponent};
+                </div>    
+                <NavLink to="uploadchapter"><h1 className='white'>Upload Chapter</h1></NavLink>
+                <input onClick={this.deleteManga} type="submit" value="Delete Manga"/>
                 <Outlet/>
             </div>
         )

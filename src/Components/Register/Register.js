@@ -10,11 +10,9 @@ class Register extends React.Component {
             name: ''
         }
     }
-
     onNameChange = (even) =>{
         this.setState({name: even.target.value})
     }
-
     onEmailChange = (even) =>{
         this.setState({email: even.target.value})
     }
@@ -35,9 +33,13 @@ class Register extends React.Component {
         })
         .then(response => response.json())
         .then(user =>{
-            if(user){
+            if(user.id){
                 this.props.loadUser(user);
-                this.props.onRouteChange("home")
+                console.log(user);
+                this.props.onRouteChange("signIn")
+            }
+            else{
+                alert('Email already existed!')
             }
         })
     }
@@ -51,15 +53,15 @@ class Register extends React.Component {
                             <legend className="f4 fw6 ph0 mh0">Register</legend>
                             <div className="mt3">
                                 <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
-                                <input onChange={this.onNameChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name"/>
+                                <input onChange={this.onNameChange} className="pa2 input-reset ba bg-white hover-bg-black hover-white w-100" type="text" name="name"  id="name"/>
                             </div>
                             <div className="mt3">
                                 <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                                <input onChange={this.onEmailChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
+                                <input onChange={this.onEmailChange} className="pa2 input-reset ba bg-white hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
                             </div>
                             <div className="mv3">
                                 <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                                <input onChange={this.onPasswordChange} className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password"/>
+                                <input onChange={this.onPasswordChange} className="b pa2 input-reset ba bg-white hover-bg-black hover-white w-100" type="password" name="password"  id="password"/>
                             </div>
                             </fieldset>
                             <div className="">

@@ -1,23 +1,9 @@
 import React from "react";
+import { Outlet, useLoaderData, NavLink} from "react-router-dom";
 import 'tachyons'
 
-class Image extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            current: []
-        }
-    }
-    componentDidMount(){
-        fetch('http://localhost:3000/image')
-        .then(response => response.json())
-        .then(data =>{
-            console.log(data)
-            this.setState({current:data})
-        })
-    }
-    render(){
-        const currents = this.state.current
+const Image = ()=>{
+        const currents = useLoaderData();
         const chaptercomponent = currents.map((current,i) =>{
             return (
                 <div >
@@ -25,11 +11,26 @@ class Image extends React.Component{
                 </div>
             )
         })
+        const deleteChapter = () =>{
+            fetch('http://localhost:3000/deletechapter')
+            .then(response => response.json())
+            .then(data =>{
+                console.log(data)
+            })
+            alert('Chapter deleted!');
+        }
         return(
             <div>
                 {chaptercomponent}
+                <NavLink to="uploadimage"><h1 className='white'>Upload Image</h1></NavLink>
+                <input onClick={deleteChapter} type="submit" value="Delete Chapter"/>
+                <Outlet/>
             </div>
         )
-    }
+}
+export const mangaLoader = async({params}) =>{
+    const {id} = params;
+    const res = await fetch('http://localhost:3000/content/'+id)
+    return res.json();
 }
 export default Image;

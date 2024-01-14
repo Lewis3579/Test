@@ -8,7 +8,7 @@ class SignIn extends React.Component  {
             signInPassword: '',
         }
     }
-
+    
     onEmailChange = (even) =>{
         this.setState({signInEmail: even.target.value})
     }
@@ -28,7 +28,11 @@ class SignIn extends React.Component  {
         })
         .then(response => response.json())
         .then(data  => {
+            console.log(data);
             if(data.id) this.props.onRouteChange("home")
+            else{
+                alert("Wrong passwords or email!");
+            }
         })
     }
     render(){
@@ -42,11 +46,11 @@ class SignIn extends React.Component  {
                                 <legend className="f4 fw6 ph0 mh0">Sign In</legend>
                                 <div className="mt3">
                                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                                    <input onChange={this.onEmailChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
+                                    <input onChange={this.onEmailChange} className="pa2 input-reset ba bg-white hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
                                 </div>
                                 <div className="mv3">
                                     <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                                    <input onChange={this.onPasswordChange} className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password"/>
+                                    <input onChange={this.onPasswordChange} className="b pa2 input-reset ba bg-white hover-bg-black hover-white w-100" type="password" name="password"  id="password"/>
                                 </div>
                             </fieldset>
                             <div className="">
